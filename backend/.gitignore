@@ -1,0 +1,9 @@
+.env
+venv/
+node_modules/
+__pycache__/
+*.pyc
+uploads/*
+!uploads/.gitkeep
+package.json
+package-lock.json
