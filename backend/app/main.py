@@ -1,9 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 from app.database.database import Base, engine
 from app.database import base
-
 from app.api.auth import router as auth_router
 from app.api.users import router as user_router
 from app.api.admin import router as admin_router
@@ -20,8 +18,6 @@ from app.api.timetable import router as timetable_router
 from app.routers import reports
 from app.api import announcement
 
-
-
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
@@ -33,6 +29,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
+        "https://9eduportal.netlify.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -58,6 +55,7 @@ reports.router,
     prefix="/reports",
     tags=["Reports"]
 )
+
 @app.get("/")
 def home():
     return {"message": "Welcome to EduPortal 🚀"}
